@@ -5,7 +5,7 @@ import { ExplainVerbosity } from "mongodb";
 
 const Schema = mongoose.Schema;
 
-export const likes = new Schema({
+export const likesSchema = new Schema({
     user_id: {
         type: Schema.Types.ObjectId,
         ref: 'User'
@@ -18,4 +18,4 @@ export const likes = new Schema({
     }
 })
 
-export default likes 
+export default mongoose.model('likes' , likesSchema)

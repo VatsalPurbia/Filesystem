@@ -2,7 +2,6 @@ import mongoose  from "mongoose";
 
 const Schema = mongoose.Schema;
 
-
 const commentesReplies  = new Schema ({
     user_id : {
         type : Schema.Types.ObjectId,
@@ -17,7 +16,7 @@ const commentesReplies  = new Schema ({
         default : Date.now
     }
 })
-export const comments = new Schema({
+export const commentsSchema= new Schema({
     post_id : { 
         type : Schema.Types.ObjectId,
         ref : 'posts'
@@ -35,4 +34,4 @@ export const comments = new Schema({
 })
 
 
-export default comments
+export default mongoose.model('comments' , commentsSchema)
