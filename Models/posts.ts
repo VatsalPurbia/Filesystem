@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import userSchema from "./User";
 const Schema = mongoose.Schema
-export const posts = new Schema ({
+export const postsSchema = new Schema ({
     user : {
         type : Schema.Types.ObjectId,
         ref : 'User'
@@ -13,10 +13,10 @@ export const posts = new Schema ({
     },
     imageUrl : String , 
     caption : String, 
-    createdAe : {
+    createdAt : {
         type : Date,
         default : Date.now
     }
 })
 
-export default posts
+export default mongoose.model('posts' , postsSchema)
