@@ -1,22 +1,30 @@
-import mongoose from "mongoose";
+import mongoose, { Document, mongo } from "mongoose";
 import userSchema from "./User";
 const Schema = mongoose.Schema
-export const postsSchema = new Schema ({
-    user : {
-        type : Schema.Types.ObjectId,
-        ref : 'User'
+
+interface postsSchema extends Document {
+    user: mongoose.Schema.Types.ObjectId,
+    content: string,
+    caption: string
+
+}
+export const postsSchema = new Schema({
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
     },
-    content : String ,
-    comments : {
-        type : Schema.Types.ObjectId,
-        ref : 'commnets'
+    content: {
+        type: String,
+        required: true
     },
-    imageUrl : String , 
-    caption : String, 
-    createdAt : {
-        type : Date,
-        default : Date.now
+    caption: {
+        type: String,
+        required: true
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
     }
 })
 
-export default mongoose.model('posts' , postsSchema)
+export default mongoose.model('posts', postsSchema)

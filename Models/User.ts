@@ -7,32 +7,32 @@ interface User extends Document {
   username : string , 
   password : string , 
   email : string , 
-  // privateAccount : boolean,
-  // followers : mongoose.Schema.Types.ObjectId,
-  // following : mongoose.Schema.Types.ObjectId,  
-  // favorites: {
-  //     userId : mongoose.Schema.Types.ObjectId,
-  //     postId : mongoose.Schema.Types.ObjectId,
+  privateAccount : boolean,
+  followers : mongoose.Schema.Types.ObjectId,
+  following : mongoose.Schema.Types.ObjectId,  
+  favorites: {
+      userId : mongoose.Schema.Types.ObjectId,
+      postId : mongoose.Schema.Types.ObjectId,
   }
-  // address : {
-  //   street : string ,
-  //   city : string ,
-  //   state : string ,
-  //   country : string ,
-  //   zipcode : string
-  // }
+  address : {
+    street : string ,
+    city : string ,
+    state : string ,
+    country : string ,
+    zipcode : string
+  }
   
-// }
+}
 
 
-// const addressSchema = new Schema({
-//     street: String,
-//     city : String, 
-//     state : String,
-//     country : String,
-//     zipCode : String 
+const addressSchema = new Schema({
+    street: String,
+    city : String, 
+    state : String,
+    country : String,
+    zipCode : String 
 
-// })
+})
 export const userSchema = new mongoose.Schema<User>({
     username: {
       type: String,
@@ -47,31 +47,31 @@ export const userSchema = new mongoose.Schema<User>({
       type: String,
       required: true,
       unique: true
-    }
-    // privateAccount: {
-    //   type: Boolean,
-    //   default: false
-    // },
-    // followers: [{
-    //   type: mongoose.Schema.Types.ObjectId,
-    //   ref: 'User'
-    // }],
-    // following: [{
-    //   type: mongoose.Schema.Types.ObjectId,
-    //   ref: 'User'
-    // }],
-    // favorites: [{
-    //   userId: {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'User'
-    //   },
-    //   postId: {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'Post'
-    //   }
-    // }],
-    // address : addressSchema
+    },
+    privateAccount: {
+      type: Boolean,
+      default: false
+    },
+    followers: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    }],
+    following: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    }],
+    favorites: [{
+      userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+      },
+      postId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Post'
+      }
+    }],
+    address : addressSchema
   });
   
 
-export default mongoose.model('User' , userSchema);
+export default mongoose.model<User>('User' , userSchema);
