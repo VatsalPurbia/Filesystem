@@ -3,7 +3,7 @@ import { Sequelize, Op, Model, DataTypes } from "sequelize"
 import { redisServer } from './db/redis';
 import { forgotPassword } from './Controllers/user/forgotPassword';
 import { testapi } from './Controllers/testapi';
-
+import { updateProduct } from './Controllers/products/updateproduct';
 import dotenv from 'dotenv'
 // user 
 import addProfilePic from './Router/user/porfilepic'
@@ -16,6 +16,7 @@ const app = express();
 const port=process.env.PORT;
 app.use(express.json())
 dotenv.config();
+app.post('/updateProduct' , updateProduct)
 app.post('/addproduct' ,addProducts)
 app.get('/getproduct', getProduct)
 // app.post('/testapi' , testapi)

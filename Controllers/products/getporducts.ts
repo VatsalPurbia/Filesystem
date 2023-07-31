@@ -13,7 +13,7 @@ export const getProduct =async (req : Request , res : Response) => {
     //    console.log(productData , '-----------here-------------')
        JSON.parse(JSON.stringify(productData))
        if(productData){
-
+        console.log(productData)
         res.status(200).json({ message: 'Successfully found the Product Data', productData });
        }
        else {

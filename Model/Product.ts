@@ -1,9 +1,21 @@
 import { DataType, Model } from "sequelize-typescript";
 import sequelizedb from "../db/connection";
 import { userSchema } from "./user";
+import { IntegerDataType } from "sequelize";
+
+interface ProductInstance extends Model {
+    product_name: string;
+    description: string;
+    images : Blob;
+    basePrice : number;
+    title : string;
+
+    // Add other properties here based on your model definition
+  }
+
 
 export const productSchema = sequelizedb.define('products',{  
-    product_name : {
+    product_name: {
         type : DataType.STRING
     },
     description :{
