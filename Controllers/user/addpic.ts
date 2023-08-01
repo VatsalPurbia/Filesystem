@@ -1,9 +1,7 @@
-import express, { Response, Request } from 'express'
-import multer from 'multer'
+import { Response, Request } from 'express'
 import fs from 'fs'
 import jwt from 'jsonwebtoken'
 import { userSchema } from '../../Model/user'
-import { log } from 'console'
 
 
 
@@ -17,7 +15,7 @@ export const addpic = async (req: Request, res: Response) => {
         const decoded: any = jwt.verify(token, 'secretKey1')
         console.log(decoded,req.body.filename,'---------HERERERERERRERRRRRRRRRRRRR-----------------')
         const picture = fs.readFileSync(`./uploads/${req.body.filename}`)
-        let data = userSchema.update({ profile: picture }, { where: { id: decoded.id } })
+         await userSchema.update({ profile: picture }, { where: { id: decoded.id } })
         res.status(200).json({ message: "successfully uploaded " })
         fs.unlink(`./uplaods/${req.body.filename}`, (err) => {
             if (err) {

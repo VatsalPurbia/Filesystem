@@ -2,7 +2,7 @@ import { Request, Response } from 'express'
 import { userSchema } from '../../Model/user'
 import redisclient from '../../db/redis'
 import { sessionSchema } from '../../Model/session'
-import { DataTypes, Op, json } from 'sequelize'
+import { Op, json } from 'sequelize'
 import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
 dotenv.config()

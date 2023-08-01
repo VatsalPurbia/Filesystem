@@ -1,5 +1,5 @@
-import express, { Response, Request } from 'express'
 import { productSchema } from '../../Model/Product'
+import express, { Response, Request } from 'express'
 import jwt from 'jsonwebtoken'
 
 export const addProducts = async (req: Request, res: Response) => {
@@ -10,14 +10,17 @@ export const addProducts = async (req: Request, res: Response) => {
     try {
 
         decode = jwt.verify(token , 'secretKey1')
-
+        console.log('')
         const newproduct = await productSchema.create({
-            porduct_name: req.body.porduct_name,
+            product_name: req.body.product_name,
             description: req.body.description,
             images: req.body.images,
             basePrice: req.body.basePrice,
+            currentPrice : req.body.currentPrice,
             title: req.body.title,
-            userId: decode?.id
+            categorie : req.body.categorie,
+            userId: decode?.id,
+            bidderId : decode?.id
         })
         console.log("Product is Added Successfully")
         res.status(200).json({ message: "Product Added Successfully" })
